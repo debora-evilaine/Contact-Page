@@ -1,9 +1,7 @@
 package com.page.contact.emailcontact.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,15 @@ public class EndUserController {
     @GetMapping
     public List<EndUser> getUser() {
         return endUserService.getUser();
+    }
+
+    @PostMapping
+    public void addNewUser(@RequestBody EndUser endUser) {
+        endUserService.addNewUser(endUser);
+    }
+
+    @DeleteMapping(path = "{enduserId}")
+    public void deleteUser(@PathVariable("enduserId") Long endUserId) {
+        endUserService.deleteUser(endUserId);
     }
 }
