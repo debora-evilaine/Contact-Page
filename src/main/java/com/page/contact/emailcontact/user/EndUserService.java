@@ -1,9 +1,11 @@
 package com.page.contact.emailcontact.user;
 
+import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -40,5 +42,21 @@ public class EndUserService {
         }
 
         endUserRepository.deleteById(endUserId);
+    }
+
+    @Transient
+    public void updateUser(Long endUserId, String name, String email) {
+        //Criar um método para cada em outra (s) classe (s) e só chamar
+
+        EndUser user = endUserRepository.findById(endUserId).orElseThrow(
+                () -> new IllegalStateException("USER WITH ID " + endUserId + " DOES NOT EXIST."));
+
+        if(name != null && !name.isEmpty() && !Objects.equals(user.getName(),name)) {
+            user.setName(name);
+        }
+
+        if(email != null && !email.isEmpty() && !Objects.equals(user.getEmail(), email)) {
+            user.setEmail(email);
+        }
     }
 }

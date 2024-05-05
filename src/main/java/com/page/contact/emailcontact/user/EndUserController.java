@@ -29,4 +29,13 @@ public class EndUserController {
     public void deleteUser(@PathVariable("enduserId") Long endUserId) {
         endUserService.deleteUser(endUserId);
     }
+
+    @PutMapping(path = "{enduserId}")
+    public void updateUser(
+            @PathVariable("enduserId") Long endUserId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email
+    ) {
+        endUserService.updateUser(endUserId, name, email);
+    }
 }
