@@ -1,6 +1,6 @@
 package com.page.contact.emailcontact.user;
 
-import jakarta.persistence.Transient;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +44,7 @@ public class EndUserService {
         endUserRepository.deleteById(endUserId);
     }
 
-    @Transient
+    @Transactional
     public void updateUser(Long endUserId, String name, String email) {
         //Criar um método para cada em outra (s) classe (s) e só chamar
 
