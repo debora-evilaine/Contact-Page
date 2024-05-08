@@ -1,9 +1,10 @@
-# welcome to Contact Page!
+# Welcome to Contact Page!
 ---
-Current status: in production ⛑️
-This repo contains the code for the Contact Page, a HTML page in which the user can input their name, email and date of birth in a form, and receive a personalized email afterwards. 
-The backend of the application is written in Java with Spring Boot, due to its powerful web application tools, and the DBMS is Dbeaver with a PostgreSQL driver, which is ran on a Docker container.
-Code reuse, scalability and stability are vital in the construction of this project, which is why the code is always written as cleanly and simply as possible. 
+### Current status: in production ⛑️  
+### This repo contains the code for the Contact Page, a HTML page in which the user can input their name, email and date of birth in a form, and receive a personalized email afterwards.  
+### The backend of the application is written in Java with Spring Boot, due to its powerful web application tools, and the DBMS is Dbeaver with a PostgreSQL driver, which is ran on a Docker container.  
+### Code reuse, scalability and stability are vital in the construction of this project, which is why the code is always written as cleanly and simply as possible.  
+
 ---
 # Deployment (coming soon...)
 ---
