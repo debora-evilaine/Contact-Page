@@ -1,7 +1,11 @@
-package com.page.contact.emailcontact.user;
+package com.page.contact.emailcontact.user.controllers;
 
+import com.page.contact.emailcontact.user.EndUser;
+import com.page.contact.emailcontact.user.EndUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -38,4 +42,7 @@ public class EndUserController {
     ) {
         endUserService.updateUser(endUserId, name, email);
     }
+
+
+
 }
