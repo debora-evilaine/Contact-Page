@@ -1,5 +1,6 @@
 package com.page.contact.emailcontact.user.controllers;
 
+import com.page.contact.emailcontact.EmailService;
 import com.page.contact.emailcontact.user.EndUser;
 import com.page.contact.emailcontact.user.EndUserService;
 import org.slf4j.Logger;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
@@ -24,9 +22,12 @@ public class WebController {
 
     private final EndUserService endUserService;
 
+    private final EmailService emailService;
+
     @Autowired
-    public WebController(EndUserService userService) {
+    public WebController(EndUserService userService, EmailService emailService) {
         this.endUserService = userService;
+        this.emailService = emailService;
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -47,11 +48,13 @@ public class WebController {
         return "submit";
     }
 
-    @RequestMapping("/save")
-    public String save(@ModelAttribute EndUser endUserObj) {
-        //ModelAndView modelAndView = new ModelAndView();
-       // endUserObj.setDob(LocalDate.parse(dob));
-        //System.out.println(endUserObj.getDob());
+    @PostMapping("/save")
+    public String save(@ModelAttribute("enduser") EndUser endUserObj) {
+        String email = endUserObj.getEmail();
+        String body = "Hello, " + endUserObj.getName();
+        String subject = "[TESTE]";
+
+        emailService.sendEmail(email, subject, body);
         endUserService.addNewUser(endUserObj);
         return "redirect:/userapi/user/enduser";
     }
@@ -60,6 +63,10 @@ public class WebController {
     public String getUser(Model model) {
         List<EndUser> users = endUserService.getUser();
         model.addAttribute("users", users);
-        return "user-list"; // Thymeleaf template name to display users
+        return "user-list";
     }
+
+
+
+
     }

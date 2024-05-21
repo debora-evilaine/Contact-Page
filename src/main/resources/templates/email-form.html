@@ -1,5 +1,5 @@
 <div th:fragment="emailForm">
-<form action="/save">
+<form action="/save" modelAttribute="enduser" method="post">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
         <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp"/>
